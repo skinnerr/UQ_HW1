@@ -10,7 +10,6 @@ function [ C ] = Compute_C( Cxx, x )
 % Constants.
 dx   = x(2) - x(1); % spacing between x-values (assumes uniform)
 nsh1 = length(x);   % # 1d shape functions
-nsh2 = length(x)^2; % # 2d shape functions
 nen  = 4;           % # element nodes
 nel  = (nsh1-1)^2;  % # global elements
 
@@ -19,9 +18,6 @@ C = zeros(nsh1);
 
 % Generate various mapping arrays.
 [IEN, AN1D, EX] = Generate_Maps(nsh1);
-
-IEN
-AN1D
 
 % Loop over elements and local nodes, assembling element-wise contributions to C.
 for e = 1:nel

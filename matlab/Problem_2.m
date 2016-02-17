@@ -6,7 +6,7 @@ sigma = 2;
 ell = 2;
 a = 1;
 N = 4;
-x = linspace(0,1,9);
+x = linspace(0,1,3);
 
 [lhat, phihat] = Galerkin_Eigs(sigma, ell, a, N, x);
 
