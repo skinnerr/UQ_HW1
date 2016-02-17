@@ -1,4 +1,4 @@
-function [ l, phix ] = Galerkin_Eigs( sigma, ell, a, N, x )
+function [ F ] = Gauss2D( f, x1range, x2range );
 %%%
 % IN:
 %      sigma - standard deviation of correlation function
