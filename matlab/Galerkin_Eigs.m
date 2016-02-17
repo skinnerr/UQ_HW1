@@ -22,7 +22,7 @@ Cxx = @(x1,x2) sigma^2 * exp(-abs(x1 - x2) / ell);
 % Compute matrices %
 %%%%%%%%%%%%%%%%%%%%
 
-C = Compute_C(Cxx, x);
+C = Compute_C(Cxx, x)
 
 return
 M = Compute_M(x);

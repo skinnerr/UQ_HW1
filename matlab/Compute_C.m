@@ -20,7 +20,10 @@ C = zeros(nsh1);
 % Generate various mapping arrays.
 [IEN, AN1D, EX] = Generate_Maps(nsh1);
 
-% Loop over elements and local nodes, filling C.
+IEN
+AN1D
+
+% Loop over elements and local nodes, assembling element-wise contributions to C.
 for e = 1:nel
     
     x1start = EX(e,1);
@@ -32,12 +35,6 @@ for e = 1:nel
         A = IEN(e,a);
         I = AN1D(A,1);
         J = AN1D(A,2);
-        
-        [e, A, I, J]
-        tx = linspace(0,1,100);
-        ty = (1 - abs(I - 1 - tx/dx));
-        plot(tx,ty);
-        hold on;
 
         % Function to integrate; piecewise linear shape functions explicitly included.
         fun = @(x1,x2) Cxx(x1,x2) * (1 - abs(I - 1 - x1/dx)) ...
