@@ -8,9 +8,10 @@ function [ C ] = Compute_C( Cxx, x )
 %%%
 
 % Constants.
+dx   = x(2) - x(1); % spacing between x-values (assumes uniform)
 nsh1 = length(x);   % # 1d shape functions
 nsh2 = length(x)^2; % # 2d shape functions
-nen = 4;            % # element nodes
+nen  = 4;           % # element nodes
 nel  = (nsh1-1)^2;  % # global elements
 
 % Pre-allocate C matrix.
@@ -21,14 +22,33 @@ C = zeros(nsh1);
 
 % Loop over elements and local nodes, filling C.
 for e = 1:nel
-    x1range = EX(e,1) + [0,1];
-    x2range = EX(e,2) + [0,1];
+    
+    x1start = EX(e,1);
+    x2start = EX(e,2);
+    
     for a = 1:nen
+        
+        % Global node number and basis function index.
         A = IEN(e,a);
-        tmp = Gauss2D(Cxx, x1range, x2range);
         I = AN1D(A,1);
         J = AN1D(A,2);
+        
+        [e, A, I, J]
+        tx = linspace(0,1,100);
+        ty = (1 - abs(I - 1 - tx/dx));
+        plot(tx,ty);
+        hold on;
+
+        % Function to integrate; piecewise linear shape functions explicitly included.
+        fun = @(x1,x2) Cxx(x1,x2) * (1 - abs(I - 1 - x1/dx)) ...
+                                  * (1 - abs(J - 1 - x2/dx));
+        
+        % Perform quadrature.
+        tmp = Gauss2D(fun, x1start, x2start, dx);
+        
+        % Augment C.
         C(I,J) = C(I,J) + tmp;
+        
     end
 end
 

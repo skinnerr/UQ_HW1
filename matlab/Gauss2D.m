@@ -1,40 +1,27 @@
-function [ F ] = Gauss2D( f, x1range, x2range );
+function [ F ] = Gauss2D( f, x1, x2, dx )
 %%%
 % IN:
-%      sigma - standard deviation of correlation function
-%      ell   - correlation length parameter
-%      a     - support of eigenproblem is [-a,a]
-%      N     - # of eigenpairs to compute
-%      x     - points to calculate eigenfunctions
+%      f  - function to integrate
+%      x1 - start of interval on x1
+%      x2 - start of interval on x2
+%      dx - uniform spacing between points on x-axes, assuming same on each axis
 % OUT:
-%      l     - eigenvalues
-%      phix  - eigenfunctions evaluated over x
+%      F  - numerical integral result
 %%%
 
 % Pre-allocate variables.
-l     = nan(N,1);
-phix  = nan(N,length(x));
+gw = [1/2, 1/2];                         % Gauss quad weights
+gx = ([-1/sqrt(3), 1/sqrt(3)] + 1) / 2;  % Gauss quad locations on [0,1].
 
-% Define covariance function.
-Cxx = @(x1,x2) sigma^2 * exp(-abs(x1 - x2) / ell);
-
-%%%%%%%%%%%%%%%%%%%%
-% Compute matrices %
-%%%%%%%%%%%%%%%%%%%%
-
-C = Compute_C(Cxx, x);
-
-return
-M = Compute_M(x);
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% Compute eigensystem %
-%%%%%%%%%%%%%%%%%%%%%%%
-
-for i = 1:N
-    % TODO TODO TODO
-    l(i) = nan;
-    phi(i) = nan(size(x));
+% Perform Gaussian quadrature.
+F = 0;
+for i = 1:2
+    for j = 1:2
+        xi = x1(1) + dx * gx(i);
+        xj = x2(1) + dx * gx(j);
+        tmp = gw(i) * gw(j) * f(xi, xj);
+        F = F + tmp;
+    end
 end
 
 end
