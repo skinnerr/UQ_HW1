@@ -33,21 +33,9 @@ for e = 1:nel
         J = AN1D(A,2);
 
         % Function to integrate; piecewise linear shape functions explicitly included.
+        % Note: shape functions assume all x > 0.
         fun = @(x1,x2) Cxx(x1,x2) * (1 - abs(I - 1 - x1/dx)) ...
                                   * (1 - abs(J - 1 - x2/dx));
-%         fun = @(x1,x2) (1 - abs(J - 1 - x2/dx));
-        
-%         [A I J x1_start x2_start dx]
-%         tmpx = linspace(x1_start,x1_start+dx,51);
-%         tmpy = linspace(x2_start,x2_start+dx,51);
-%         f = nan(length(tmpx));
-%         for i = 1:length(tmpx)
-%             for j = 1:length(tmpy)
-%                 f(i,j) = fun(tmpx(i),tmpy(j));
-%             end
-%         end
-%         surf(tmpx, tmpy, f);
-%         zlim([0,1]);
         
         % Perform quadrature.
         tmp = Gauss2D(fun, x1_start, x2_start, dx);

@@ -5,17 +5,18 @@ Set_Default_Plot_Properties();
 sigma = 1;
 ell = 2;
 a = 1/2;
-b = 4;
-Nx = 6;
+b = 10;
+Nx = 50;
+
 x = linspace(0,2*a,Nx);
+[l_h, phi_h] = Galerkin_Eigs(sigma, ell, b, x);
+max(max(phi_h))
 
-[lhat, phihat] = Galerkin_Eigs(sigma, ell, b, x);
-
+% x = linspace(-a,a,Nx);
 [l, phi] = Analytical_Eigs(sigma, ell, a, b, x);
+max(max(phi))
 
-[lhat / max(max(lhat)), l / max(l)]
-
-semilogy(l/max(l),'--o')
+plot(1:b, l_h)
 
 
 end
