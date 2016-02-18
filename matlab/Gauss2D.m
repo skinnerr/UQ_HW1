@@ -17,8 +17,8 @@ gx = ([-1/sqrt(3), 1/sqrt(3)] + 1) / 2;  % Gauss quad locations on [0,1].
 F = 0;
 for i = 1:2
     for j = 1:2
-        xi = x1(1) + dx * gx(i);
-        xj = x2(1) + dx * gx(j);
+        xi = x1 + dx * gx(i);
+        xj = x2 + dx * gx(j);
         tmp = gw(i) * gw(j) * f(xi, xj);
         F = F + tmp;
     end

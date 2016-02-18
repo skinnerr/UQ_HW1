@@ -2,18 +2,20 @@ function [] = Problem_2()
 
 Set_Default_Plot_Properties();
 
-sigma = 2;
+sigma = 1;
 ell = 2;
-a = 1;
-b = 10;
-Nx = 50;
-x = linspace(0,a,Nx);
+a = 1/2;
+b = 4;
+Nx = 6;
+x = linspace(0,2*a,Nx);
 
 [lhat, phihat] = Galerkin_Eigs(sigma, ell, b, x);
 
 [l, phi] = Analytical_Eigs(sigma, ell, a, b, x);
 
 [lhat / max(max(lhat)), l / max(l)]
+
+semilogy(l/max(l),'--o')
 
 
 end
