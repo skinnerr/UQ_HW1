@@ -5,11 +5,15 @@ Set_Default_Plot_Properties();
 sigma = 2;
 ell = 2;
 a = 1;
-N = 4;
-x = linspace(0,1,3);
+b = 10;
+Nx = 50;
+x = linspace(0,a,Nx);
 
-[lhat, phihat] = Galerkin_Eigs(sigma, ell, a, N, x);
+[lhat, phihat] = Galerkin_Eigs(sigma, ell, b, x);
 
-% [l, phi] = Analytical_Eigs(sigma, ell, a, N, x);
+[l, phi] = Analytical_Eigs(sigma, ell, a, b, x);
+
+[lhat / max(max(lhat)), l / max(l)]
+
 
 end
