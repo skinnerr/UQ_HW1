@@ -28,6 +28,6 @@ M = Compute_M(x);
 [phix, l] = eigs(C,M,b);
 
 [l, order] = sort(diag(l),'descend');
-phix = phix(order);
+phix = phix(:,order);
 
 end
