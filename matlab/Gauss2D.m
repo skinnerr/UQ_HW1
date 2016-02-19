@@ -23,5 +23,6 @@ for i = 1:2
         F = F + tmp;
     end
 end
+F = F * dx^2;
 
 end

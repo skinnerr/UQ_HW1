@@ -49,11 +49,11 @@ for i = 1:N
     
     % Odd eigenfunctions.
     if mod(i,2)
-        phix(i,:) = cos(omega(i)*x) ./ sqrt(a + sin(2*a*omega(i) / (2*omega(i))));
+        phix(i,:) = cos(omega(i)*x) ./ sqrt(a + sin(2*a*omega(i)) / (2*omega(i)));
         
     % Even eigenfunctions.
     else
-        phix(i,:) = sin(omega(i)*x) ./ sqrt(a - sin(2*a*omega(i) / (2*omega(i))));
+        phix(i,:) = sin(omega(i)*x) ./ sqrt(a - sin(2*a*omega(i)) / (2*omega(i)));
     end
     
     % Eigenvalues use same formula for both odd and even.
@@ -63,6 +63,9 @@ end
 
 % Correct for sigma dependence in eigenvalues.
 l = l * sigma^2;
+
+% Transpose so index is (i,x).
+phix = phix';
 
 end
 
