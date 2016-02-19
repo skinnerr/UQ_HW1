@@ -21,7 +21,7 @@ max_even = floor(N/2);
 max_odd  = floor((N+1)/2);
 
 % Larger values make MATLAB happier, but sacrifice root finding interval accuracy.
-eps_scale = 200;
+eps_scale = 10000;
 
 %%%%%%%%%%%%%%%%%%
 % Compute omegas %
