@@ -1,9 +1,9 @@
-function [] = Problem_2a()
+function [] = Problem_3a()
 
 Set_Default_Plot_Properties();
 
 sigma = 2;
-ell = 2;
+ell = 0.2;
 a = 1/2;
 b = 1000;
 Nx = 100;
