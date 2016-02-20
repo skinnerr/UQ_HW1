@@ -23,28 +23,31 @@ end
 
 % Plot a few of the realizations.
 figure();
-plot(x,X(1:3,:));
+subplot(3,1,1);
+plot(x,X(1:7,:));
 xlabel('x');
 ylabel('G(x,\omega)');
 
 % Plot the mean.
 sample_mean = mean(X);
-figure();
+subplot(3,1,2);
 hold on;
 plot(x,sample_mean,'DisplayName','Simulated');
 plot(x,ones(1,Nx),'--','DisplayName','True');
 xlabel('x');
 ylabel('\langle G(x) \rangle');
-legend('show');
+hleg = legend('show');
+set(hleg, 'Location', 'southwest');
 
 % Plot the variance.
 sample_variance = var(X);
-figure();
+subplot(3,1,3);
 hold on;
 plot(x,sample_variance,'DisplayName','Simulated');
 plot(x,(sigma^2)*ones(1,Nx),'--','DisplayName','True');
 xlabel('x');
 ylabel('Var(G(x))');
-legend('show');
+hleg = legend('show');
+set(hleg, 'Location', 'southwest');
 
 end

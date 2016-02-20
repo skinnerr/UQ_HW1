@@ -5,7 +5,7 @@ Set_Default_Plot_Properties();
 sigma = 2;
 ell = 0.2;
 a = 1/2;
-Nx_all = [5,10,20,40,60,80,100,120];
+Nx_all = [5,10,20,40,80,160];
 
 for Nx = Nx_all
     
@@ -22,7 +22,7 @@ for Nx = Nx_all
     % Flip Galerkin eigenfunctions to match sign of analytical ones.
     phih = phih .* -repmat(sign(phih(1,:)) .* -sign(phi(1,:)), size(phih,1), 1);
 
-%     figure(1);
+%     figure(4);
 %     hold on;
 %     plot(1:b, l,  '-', 'DisplayName', sprintf('Analytical, N = %i', Nx));
 %     plot(1:b, lh, 'o', 'DisplayName', sprintf('Galerkin, N = %i', Nx));
@@ -32,7 +32,7 @@ for Nx = Nx_all
 %     set(gca, 'YScale', 'log');
 %     legend('show');
 
-    figure(2);
+    figure(5);
     hold on;
     plot(1:b, abs(l-lh)./l, '-o', 'DisplayName', sprintf('N = %i', Nx));
     xlabel('i');
@@ -41,7 +41,7 @@ for Nx = Nx_all
     set(gca, 'XScale', 'log');
     set(gca, 'YScale', 'log');
 
-%     figure(3);
+%     figure(6);
 %     hold on;
 %     plot(x, phi);
 %     plot(x, phih, '--k');
@@ -50,7 +50,7 @@ for Nx = Nx_all
     
 end
 
-figure(2);
+figure(5);
 hleg = legend('show');
 set(hleg, 'Location', 'southeast');
 

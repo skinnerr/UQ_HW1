@@ -5,7 +5,7 @@ Set_Default_Plot_Properties();
 sigma = 2;
 ell = 2;
 a = 1/2;
-Nx_all = [5,10,20,40,60,80,100,120];
+Nx_all = [5,10,20,40,80,160];
 
 for Nx = Nx_all
     
