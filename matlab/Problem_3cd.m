@@ -6,7 +6,7 @@ sigma = 2;
 ell = 0.2;
 a = 1/2;
 Nx = 100;
-b = 16;
+b = 11;
 
 realizations = 100000;
 
