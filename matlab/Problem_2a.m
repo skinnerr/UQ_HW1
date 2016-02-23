@@ -14,20 +14,21 @@ x = linspace(-a,a,Nx);
 % Calculate sums of eigenvalues.
 s = nan(b,1);
 for i = 1:b
-    s(i) = sum(l(i:end));
+    s(i) = sum(l(1:i));
 end
-s = s / s(1);
+s = s / s(end);
 
 % Plot sums of eigenvalues.
 figure();
 hold on;
 plot(1:b, s, '-o', 'DisplayName', 'Analytical Sum');
-plot(1:b, 0.1*ones(1,b),  '--','DisplayName', '10% MSE');
+plot(1:b, 0.9*ones(1,b),  '--','DisplayName', '10% MSE');
 xlabel('b');
-ylabel(['\Sigma_{i=1}^b \lambda_i / \Sigma_{i=1}^{',sprintf('%i',b),'} \lambda_i']);
+ylabel(['\Sigma_{i=1}^{b} \lambda_i / \Sigma_{i=1}^{',sprintf('%i',b),'} \lambda_i']);
 set(gca, 'XScale', 'log');
 set(gca, 'YScale', 'log');
-legend('show');
+hleg = legend('show');
+set(hleg, 'Location', 'southeast');
 
 % Plot eigenvalues.
 figure();
@@ -38,6 +39,7 @@ ylabel('\lambda_i');
 xlim([1,b]);
 set(gca, 'XScale', 'log');
 set(gca, 'YScale', 'log');
-legend('show');
+hleg = legend('show');
+set(hleg, 'Location', 'northeast');
 
 end

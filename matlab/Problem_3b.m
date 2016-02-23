@@ -6,6 +6,7 @@ sigma = 2;
 ell = 0.2;
 a = 1/2;
 Nx_all = [5,10,20,40,80,160];
+Nx_all = [5,10,20,40];
 
 for Nx = Nx_all
     
@@ -34,7 +35,8 @@ for Nx = Nx_all
 
     figure(5);
     hold on;
-    plot(1:b, abs(l-lh)./l, '-o', 'DisplayName', sprintf('N = %i', Nx));
+%     plot(1:b, abs(l-lh)./l, '-o', 'DisplayName', sprintf('N = %i', Nx));
+    plot(1:b, abs(l-lh), '-o', 'DisplayName', sprintf('N = %i', Nx));
     xlabel('i');
     ylabel('Relative Error (|\lambda_i - \lambda_i^h| / \lambda_i)');
     xlim([1,b]);

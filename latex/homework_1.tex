@@ -127,9 +127,9 @@ In \figref{fig:analytical_eigs}, we see that a longer correlation length $\ell$ 
 
 In \figref{fig:error_reduction}, as expected, increasing the number of finite elements decreases the relative error of our approximated eigenvalues. The larger the magnitude of $\lambda_i$, the lower its relative error. Smaller correlation length $\ell$ corresponds to reduced eigenvalue accuracy for a given number of finite elements. Mathlab's `eigs` solver only solves for N-2 eigenpairs without producing warnings.
 
-Finally, in \figref{fig:realizations}, we see the high-frequency behavior implied by smaller $\ell$ manifest in the seven individual realizations. For both $\ell=2$ and $\ell=0.2$, the sample mean matches the true mean very well; this is a direct consequence of reducing the mean square error to $<10\%$. The variance is less accurate, however. Larger $\ell$ results in a better approximation of variance, but this could be due to the mean-square error being reduced to 6.3\% for $\ell=2$, compared to 9.4\% for $\ell=0.2$. These are the highest values below 10\% for each case.
+Finally, in \figref{fig:realizations}, we see the high-frequency behavior implied by smaller $\ell$ manifest in the seven individual realizations. For both $\ell=2$ and $\ell=0.2$, the sample mean matches the true mean very well; this is a direct consequence of reducing the mean square error to $<10\%$. The variance is less accurate, however. Larger $\ell$ results in a better approximation of variance, but this could be due to the mean-square error being reduced to 6.4\% for $\ell=2$, compared to 9.4\% for $\ell=0.2$. These are the highest values below 10\% for each case.
 
-To investigate further, \figref{fig:realizations_moreterms} increases the KLE cutoff to include $b=17$ terms for the $\ell=0.2$ case, matching the $\ell=2$ case's MSE within 1\% using \eqref{eq:MSE_criterion}. Despite nearly identical MSE's, the $\ell=0.2$ variance is still $\sim2.5\%$ further away from the true value of $\sigma^2 = 4$ than the $\ell=2$ case's variance. I believe this results from variance being a higher-order statistic than the mean, which makes it inherently more difficult to capture with a small number of KLE terms. This effect is pronounced when the process has a shorter correlation length.
+To investigate further, \figref{fig:realizations_moreterms} increases the KLE cutoff to include $b=16$ terms for the $\ell=0.2$ case, matching the $\ell=2$ case's MSE within 1\% using \eqref{eq:MSE_criterion}. With nearly identical MSE's, the $\ell=0.2$ mean variance is comparably close to the true value of $\sigma^2 = 4$, compared to the $\ell=2$ case's mean variance.
 
 \begin{figure}[p]
 \centering
@@ -144,7 +144,7 @@ To investigate further, \figref{fig:realizations_moreterms} increases the KLE cu
 \caption{$\ell=0.2$}
 \end{subfigure}
 \\[0.2cm]
-\caption{1,000 analytical eigenvalues and normalized sum of the largest $b$ eigenvalues using $\sigma = 2$. Mean-square error of truncation $<10\%$ is first achieved with (a) $b=3$ and (b) $b=12$ terms in the KL expansion.}
+\caption{1,000 analytical eigenvalues and normalized sum of the largest $b$ eigenvalues using $\sigma = 2$. Mean-square error of truncation $<10\%$ is first achieved with (a) $b=2$ and (b) $b=11$ terms in the KL expansion.}
 \label{fig:analytical_eigs}
 \end{figure}
 
@@ -182,11 +182,11 @@ To investigate further, \figref{fig:realizations_moreterms} increases the KLE cu
 \centering
 \begin{subfigure}{0.49\textwidth}
 \includegraphics[width=\textwidth,trim={0 1cm 0 0}]{Prob2cd.eps}
-\caption{$\ell=2$, MSE 6.34\%}
+\caption{$\ell=2$, MSE 6.4\%}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
 \includegraphics[width=\textwidth,trim={0 1cm 0 0}]{Prob3cd_17terms.eps}
-\caption{$\ell=0.2$, MSE 6.40\%}
+\caption{$\ell=0.2$, MSE 6.4\%}
 \end{subfigure}
 \\[0.2cm]
 \caption{Same as \figref{fig:realizations}, but incorporating $b=17$ terms in the KL expansion of $\ell=0.2$ to match MSE with the $\ell=2$ case. For both plots, $\sigma=2$. Variance is still approximated better for case with longer correlation length.}
